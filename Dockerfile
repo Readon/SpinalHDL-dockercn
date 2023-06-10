@@ -10,7 +10,12 @@ FROM base AS builder
 ARG JAVA_EXTRA_OPTS="-Xmx2g -Xms2g"
 ENV JAVA_OPTS="${JAVA_OPTS} ${JAVA_EXTRA_OPTS}"
 ENV PATH="/root/.local/share/code-server/bin:${PATH}"
-RUN curl -fsSL https://code-server.dev/install.sh | sh
+
+# Install Visual Studio Code 
+RUN wget -q https://packages.microsoft.com/keys/microsoft.asc -O- | apt-key add - \
+ && sudo sh -c 'echo "deb [arch=amd64] https://packages.microsoft.com/repos/vscode stable main" > /etc/apt/sources.list.d/vscode.list' \
+ && sudo apt-get update \
+ && sudo apt-get install -y code
 
 ARG METALS_VERSION="1.23.0"
 ARG EXTENSION_DIR=/root/.vscode-server/extensions
