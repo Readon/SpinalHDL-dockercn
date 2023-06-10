@@ -9,7 +9,8 @@ FROM base AS builder
 
 ARG JAVA_EXTRA_OPTS="-Xmx2g -Xms2g"
 ENV JAVA_OPTS="${JAVA_OPTS} ${JAVA_EXTRA_OPTS}"
-ENV PATH="/root/.local/share/code-server/bin:${PATH}"
+ARG DATA_DIR="/root/.vscode-server"
+# ENV PATH="/root/.local/share/code-server/bin:${PATH}"
 
 # Install Visual Studio Code 
 RUN curl -fsSL https://packages.microsoft.com/keys/microsoft.asc | apt-key add - \
@@ -19,11 +20,11 @@ RUN curl -fsSL https://packages.microsoft.com/keys/microsoft.asc | apt-key add -
 
 ARG METALS_VERSION="1.23.0"
 ARG EXTENSION_DIR=/root/.vscode-server/extensions
-RUN code --install-extension scalameta.metals@${METALS_VERSION} && \
-    code --install-extension ms-ceintl.vscode-language-pack-zh-hans && \
-    code --install-extension mhutchie.git-graph && \
-    code --install-extension donjayamanne.githistory && \
-    code --install-extension YuTengjing.open-in-external-app
+RUN code --user-data-dir ${DATA_DIR} --install-extension scalameta.metals@${METALS_VERSION} && \
+    code --user-data-dir ${DATA_DIR} --install-extension ms-ceintl.vscode-language-pack-zh-hans && \
+    code --user-data-dir ${DATA_DIR} --install-extension mhutchie.git-graph && \
+    code --user-data-dir ${DATA_DIR} --install-extension donjayamanne.githistory && \
+    code --user-data-dir ${DATA_DIR} --install-extension YuTengjing.open-in-external-app
 
 ENV COURSIER_CMD="$EXTENSION_DIR/scalameta.metals-$METALS_VERSION-universal/coursier"
 RUN $COURSIER_CMD install bloop:1.5.6 && \
