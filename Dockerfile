@@ -26,7 +26,7 @@ RUN code --user-data-dir ${DATA_DIR} --install-extension scalameta.metals@${META
     code --user-data-dir ${DATA_DIR} --install-extension donjayamanne.githistory && \
     code --user-data-dir ${DATA_DIR} --install-extension YuTengjing.open-in-external-app
 
-ARG COURSIER_CMD="$EXTENSION_DIR/scalameta.metals-$METALS_VERSION-universal/coursier"
+ARG COURSIER_CMD="$EXTENSION_DIR/scalameta.metals-$METALS_VERSION/coursier"
 RUN $COURSIER_CMD install bloop:1.5.6 && \
     $COURSIER_CMD install metals:0.11.12
 
