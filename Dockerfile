@@ -19,7 +19,7 @@ RUN curl -fsSL https://packages.microsoft.com/keys/microsoft.asc | apt-key add -
  && apt-get install -y code
 
 ARG METALS_VERSION="1.23.0"
-ARG EXTENSION_DIR=/root/.vscode-server/extensions
+ARG EXTENSION_DIR=/root/.vscode-server/extensionsCache
 RUN code --user-data-dir ${DATA_DIR} --install-extension scalameta.metals@${METALS_VERSION} && \
     code --user-data-dir ${DATA_DIR} --install-extension ms-ceintl.vscode-language-pack-zh-hans && \
     code --user-data-dir ${DATA_DIR} --install-extension mhutchie.git-graph && \
