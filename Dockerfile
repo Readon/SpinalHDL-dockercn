@@ -26,9 +26,9 @@ RUN code --user-data-dir ${DATA_DIR} --install-extension scalameta.metals@${META
     code --user-data-dir ${DATA_DIR} --install-extension donjayamanne.githistory && \
     code --user-data-dir ${DATA_DIR} --install-extension YuTengjing.open-in-external-app
 
-ARG COURSIER_CMD="$EXTENSION_DIR/scalameta.metals-$METALS_VERSION/coursier"
-RUN $COURSIER_CMD install bloop:1.5.6 && \
-    $COURSIER_CMD install metals:0.11.12
+# ARG COURSIER_CMD="$EXTENSION_DIR/scalameta.metals-$METALS_VERSION/coursier"
+# RUN $COURSIER_CMD install bloop:1.5.6 && \
+#     $COURSIER_CMD install metals:0.11.12
 
 FROM base AS run
 
@@ -51,4 +51,4 @@ RUN git clone https://github.com/Readon/FormalTutorials.git && \
 
 COPY --from=builder /root/.vscode-server /root/.vscode-server
 COPY --from=builder /root/.vscode/extensions /root/.vscode-server/extensions
-COPY --from=builder /sbt/.cache/coursier /sbt/.cache/coursier
+# COPY --from=builder /sbt/.cache/coursier /sbt/.cache/coursier
