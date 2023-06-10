@@ -1,1 +1,2 @@
 # SpinalHDL-dockercn
+在docker镜像中安装部分VSCode所需插件，解决由于网络障碍造成的安装问题。
