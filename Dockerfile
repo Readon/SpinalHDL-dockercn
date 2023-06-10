@@ -13,9 +13,9 @@ ENV PATH="/root/.local/share/code-server/bin:${PATH}"
 
 # Install Visual Studio Code 
 RUN curl -fsSL https://packages.microsoft.com/keys/microsoft.asc | apt-key add - \
- && sudo sh -c 'echo "deb [arch=amd64] https://packages.microsoft.com/repos/vscode stable main" > /etc/apt/sources.list.d/vscode.list' \
- && sudo apt-get update \
- && sudo apt-get install -y code
+ && echo "deb [arch=amd64] https://packages.microsoft.com/repos/vscode stable main" > /etc/apt/sources.list.d/vscode.list \
+ && apt-get update \
+ && apt-get install -y code
 
 ARG METALS_VERSION="1.23.0"
 ARG EXTENSION_DIR=/root/.vscode-server/extensions
