@@ -10,7 +10,6 @@ FROM base AS builder
 ARG JAVA_EXTRA_OPTS="-Xmx2g -Xms2g"
 ENV JAVA_OPTS="${JAVA_OPTS} ${JAVA_EXTRA_OPTS}"
 ARG DATA_DIR="/root/.vscode-server"
-ENV COURSIER_REPOSITORY="https://repo.huaweicloud.com/repository/maven/"
 
 # Install Visual Studio Code 
 RUN curl -fsSL https://packages.microsoft.com/keys/microsoft.asc | apt-key add - \
@@ -27,6 +26,7 @@ RUN code --user-data-dir ${DATA_DIR} --install-extension scalameta.metals@${META
     code --user-data-dir ${DATA_DIR} --install-extension YuTengjing.open-in-external-app
 
 ARG COURSIER_CMD="$EXTENSION_DIR/scalameta.metals-$METALS_VERSION/coursier"
+ENV COURSIER_REPOSITORIES="https://repo.huaweicloud.com/repository/maven/"
 RUN $COURSIER_CMD install bloop:1.5.6 && \
     $COURSIER_CMD install metals:0.11.12
 
