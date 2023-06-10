@@ -9,6 +9,7 @@ FROM base AS builder
 
 ARG JAVA_EXTRA_OPTS="-Xmx2g -Xms2g"
 ENV JAVA_OPTS="${JAVA_OPTS} ${JAVA_EXTRA_OPTS}"
+ENV PATH="/root/.local/share/code-server/bin:${PATH}"
 RUN curl -fsSL https://code-server.dev/install.sh | sh
 
 ARG METALS_VERSION="1.23.0"
