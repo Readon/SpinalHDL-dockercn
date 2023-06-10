@@ -19,7 +19,7 @@ RUN curl -fsSL https://packages.microsoft.com/keys/microsoft.asc | apt-key add -
 
 ARG METALS_VERSION="1.23.0"
 ARG DATA_DIR=/root/.vscode-server
-ARG EXTENSION_DIR=/root/.vscode-server/extensions
+ARG EXTENSION_DIR=/root/.vscode/extensions
 RUN code --user-data-dir ${DATA_DIR} --install-extension scalameta.metals@${METALS_VERSION} && \
     code --user-data-dir ${DATA_DIR} --install-extension ms-ceintl.vscode-language-pack-zh-hans && \
     code --user-data-dir ${DATA_DIR} --install-extension mhutchie.git-graph && \
@@ -49,5 +49,6 @@ RUN git clone https://github.com/Readon/FormalTutorials.git && \
     mill _.compile && \
     cd .. && rm -rf FormalTutorials
 
-COPY --from=builder /root/.vscode-server/extensions /root/.vscode-server/extensions
+COPY --from=builder /root/.vscode-server /root/.vscode-server
+COPY --from=builder /root/.vscode/extensions /root/.vscode-server/extensions
 COPY --from=builder /sbt/.cache/coursier /sbt/.cache/coursier
