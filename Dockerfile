@@ -49,5 +49,5 @@ RUN git clone https://github.com/Readon/FormalTutorials.git && \
     mill _.compile && \
     cd .. && rm -rf FormalTutorials
 
-COPY --from=builder /root/.vscode-server/extensions /root/.vscode-server/extensions
+COPY --from=builder /root/.vscode/extensions /root/.vscode/extensions
 COPY --from=builder /sbt/.cache/coursier /sbt/.cache/coursier
