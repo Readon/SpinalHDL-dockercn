@@ -12,7 +12,7 @@ ENV JAVA_OPTS="${JAVA_OPTS} ${JAVA_EXTRA_OPTS}"
 ENV PATH="/root/.local/share/code-server/bin:${PATH}"
 
 # Install Visual Studio Code 
-RUN wget -q https://packages.microsoft.com/keys/microsoft.asc -O- | apt-key add - \
+RUN curl -fsSL https://packages.microsoft.com/keys/microsoft.asc | apt-key add - \
  && sudo sh -c 'echo "deb [arch=amd64] https://packages.microsoft.com/repos/vscode stable main" > /etc/apt/sources.list.d/vscode.list' \
  && sudo apt-get update \
  && sudo apt-get install -y code
