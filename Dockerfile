@@ -2,6 +2,7 @@
 # SPDX-License-Identifier: GPL-3.0-only
 #
 # Author(s): Pavel Benacek <pavel.benacek@gmail.com>
+#            Yindong Xiao <xydarcher@163.com>
 
 FROM ghcr.io/spinalhdl/docker:master AS base
 
