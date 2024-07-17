@@ -10,7 +10,7 @@ FROM base AS builder
 
 ARG JAVA_EXTRA_OPTS="-Xmx2g -Xms2g"
 ENV JAVA_OPTS="${JAVA_OPTS} ${JAVA_EXTRA_OPTS}"
-ENV COURSIER_REPOSITORIES="https://repo.huaweicloud.com/repository/maven/"
+# ENV COURSIER_REPOSITORIES="https://repo.huaweicloud.com/repository/maven/"
 
 # Install Visual Studio Code 
 RUN curl -fsSL https://packages.microsoft.com/keys/microsoft.asc | apt-key add - \
